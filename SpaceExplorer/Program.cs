@@ -24,41 +24,40 @@ namespace SpaceExplorer
 
                 string[] directions = new string[] { "left", "right", "forward", "back" };
 
-                if (action == "walk")
+                switch (action)
                 {
-                    if (directions.Contains(description))
-                    {
-                        Console.WriteLine($"Walking {description}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("I can't walk that way");
-                    }
+                    case "walk":
+                        if (directions.Contains(description))
+                        {
+                            Console.WriteLine($"Walking {description}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("I can't walk that way");
+                        }
+                        break;
+                    case "jump":
+                        if (directions.Contains(description))
+                        {
+                            Console.WriteLine($"Jumping {description}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("I can't jump that way");
+                        }
+                        break;
+                    case "fire":
+                        {
+                            Console.WriteLine("Kablooie!");
+                        }
+                        break;
+                    case "quit":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine($"I don't understand {userinput}!");
+                        break;
                 }
-                else if (action == "jump")
-                {
-                    if (directions.Contains(description))
-                    {
-                        Console.WriteLine($"Jumping {description}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("I can't jump that way");
-                    }
-                }
-                else if (userinput == "fire")
-                {
-                    Console.WriteLine("Kablooie!");
-                }
-                else if (action == "quit")
-                {
-                    exit = true;
-                }
-                else
-                {
-                    Console.WriteLine($"I don't understand {userinput}!");
-                }
-               
             } while (exit == false);
         }
     }
