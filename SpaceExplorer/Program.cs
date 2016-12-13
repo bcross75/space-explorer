@@ -16,39 +16,47 @@ namespace SpaceExplorer
             {
                 string userinput = Console.ReadLine().ToLower();
                 var inputs = userinput.Split(' ');
-                if (inputs[0] == "walk")
+                var action = inputs[0];
+
+                var description = "";
+                if (inputs.Length > 1)
+                    description = inputs[1];
+
+                string[] directions = new string[] { "left", "right", "forward", "back" };
+
+                if (action == "walk")
                 {
-                    var direction = inputs[1];
-                    if (direction == "left" || direction == "right")
+                    if (directions.Contains(description))
                     {
-                        Console.WriteLine($"Walking {direction}");
+                        Console.WriteLine($"Walking {description}");
                     }
                     else
                     {
-                        Console.WriteLine("I only walk left and right");
+                        Console.WriteLine("I can't walk that way");
                     }
-
                 }
-                else if (userinput == "quit")
+                else if (action == "jump")
                 {
-                    exit = true;
+                    if (directions.Contains(description))
+                    {
+                        Console.WriteLine($"Jumping {description}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("I can't jump that way");
+                    }
                 }
                 else if (userinput == "fire")
                 {
-                    Console.WriteLine("Suns Out Guns Out");
+                    Console.WriteLine("Kablooie!");
                 }
-
+                else if (action == "quit")
+                {
+                    exit = true;
+                }
                 else
                 {
-                    Console.WriteLine("I don't understand " + userinput + "!");
                     Console.WriteLine($"I don't understand {userinput}!");
-
-                    var builder = new StringBuilder();
-                    builder.Append("I don't understand ");
-                    builder.Append(userinput);
-                    builder.Append("!");
-
-                    Console.WriteLine(builder.ToString());
                 }
                
             } while (exit == false);
